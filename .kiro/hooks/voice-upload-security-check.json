@@ -1,0 +1,10 @@
+{
+  "name": "Voice Upload Security Scanner",
+  "description": "Validates that voice file uploads to Supabase storage follow security best practices",
+  "trigger": {
+    "type": "onFileSave",
+    "pattern": "**/*.{ts,tsx,js,jsx}"
+  },
+  "prompt": "Review the saved file for voice file upload implementations to Supabase storage. Check for:\n\n1. **File Type Validation**: Ensure only audio file types are accepted (e.g., mp3, wav, ogg, m4a, webm)\n2. **File Size Limits**: Verify maximum file size restrictions are enforced (recommend 10MB max)\n3. **Authentication**: Confirm user authentication is required before upload\n4. **RLS Policies**: Check that Row Level Security policies restrict access appropriately\n5. **Secure File Paths**: Ensure file paths include user ID to prevent unauthorized access\n6. **Content Type Validation**: Verify Content-Type headers are validated\n7. **Sanitized Filenames**: Check that filenames are sanitized to prevent path traversal\n8. **Storage Bucket Configuration**: Confirm bucket has appropriate public/private settings\n9. **Error Handling**: Ensure sensitive information isn't leaked in error messages\n10. **Rate Limiting**: Check if upload rate limiting is implemented\n\nIf any security issues are found, provide:\n- Clear description of the vulnerability\n- Severity level (Critical/High/Medium/Low)\n- Specific code location\n- Recommended fix with code example\n\nIf no voice upload code is found in the file, respond with 'No voice upload code detected in this file.'\n\nFocus only on actual security issues, not code style or minor improvements.",
+  "autoRun": false
+}
